@@ -1,7 +1,7 @@
 from flask import Flask
 
 from config import source_page
-from dev.get_data import get_poland_stats_for_today, get_stats_last_7_days
+from dev.get_data import get_poland_stats_time, get_stats_last_7_days
 
 app = Flask(__name__)
 
@@ -11,9 +11,9 @@ def welcome():
     return 'Welcome to covid stats'
 
 
-@app.route('/today', methods=['GET'])
+@app.route('/time_charts', methods=['GET'])
 def today_stats():
-    return get_poland_stats_for_today(source_page)
+    return get_poland_stats_time(source_page)
 
 
 @app.route('/stats', methods=['GET'])
