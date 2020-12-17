@@ -2,7 +2,7 @@ from requests import get
 from datetime import datetime, timedelta
 import json
 
-from config import source_page
+from config import source_page, json_stats
 
 
 def date_range(start_date, end_date):
@@ -20,19 +20,13 @@ def get_poland_stats_time(page):
     count = 0
     for record in data['records']:
         if record['countriesAndTerritories'] == 'Poland':
-            date_time = datetime(int(record['year']), int(record['month']), int(record['day']))
+            date_time = datetime.strptime(record['dateRep'], '%d/%m/%Y')
             if today >= date_time >= (today - timedelta(days=7)):
-                date = record['dateRep']
-                cases = record['cases']
-                deaths = record['deaths']
-                cases_7 += cases
-                deaths_7 += deaths
-                dic[count] = {'date': date, 'cases': cases, 'deaths': deaths}
-                count += 1
-    dic['deaths_total'] = deaths_7
-    dic['cases_total'] = cases_7
+                dic['deaths_total'] = record['deaths_weekly']
+                dic['cases_total'] = record['cases_weekly']
     json_dic = json.dumps(dic)
-    return json_dic
+    json_ok = {**json_dic, **json_stats}
+    return json_ok
 
 
 def get_stats_last_7_days(page):
@@ -42,7 +36,8 @@ def get_stats_last_7_days(page):
     dic = {}
     count = 0
     for record in data['records']:
-        if record['countriesAndTerritories'] == 'Poland':
+        if record['countriesAndTerritories'] == 'Poland ':
+            #date_time = datetime.strptime(record['dateRep'], '%d/%m/%Y')
             date_time = datetime(int(record['year']), int(record['month']), int(record['day']))
             if today >= date_time >= (today - timedelta(days=7)):
                 date = record['dateRep']
@@ -56,7 +51,7 @@ def get_stats_last_7_days(page):
                 count += 1
                 continue
     json_dic = json.dumps(dic)
-    return json_dic
+    return json_stats
 
 
 if __name__ == '__main__':
