@@ -14,10 +14,7 @@ def get_poland_stats_time(page):
     response = get(page, headers={"content-type": "application/json"})
     data = response.json()
     today = datetime.today()
-    cases_7 = 0
-    deaths_7 = 0
     dic = {}
-    count = 0
     for record in data['records']:
         if record['countriesAndTerritories'] == 'Poland':
             date_time = datetime.strptime(record['dateRep'], '%d/%m/%Y')
@@ -25,8 +22,7 @@ def get_poland_stats_time(page):
                 dic['deaths_total'] = record['deaths_weekly']
                 dic['cases_total'] = record['cases_weekly']
     json_dic = json.dumps(dic)
-    json_ok = {**json_dic, **json_stats}
-    return json_ok
+    return json_dic
 
 
 def get_stats_last_7_days(page):
