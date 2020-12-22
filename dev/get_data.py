@@ -18,7 +18,8 @@ def get_poland_stats_time(page):
     for record in data['records']:
         if record['countriesAndTerritories'] == 'Poland':
             date_time = datetime.strptime(record['dateRep'], '%d/%m/%Y')
-            if today >= date_time >= (today - timedelta(days=7)):
+            if today >= date_time >= (today - timedelta(days=14)):
+                print('poland')
                 dic['deaths_total'] = record['deaths_weekly']
                 dic['cases_total'] = record['cases_weekly']
     json_dic = json.dumps(dic)
