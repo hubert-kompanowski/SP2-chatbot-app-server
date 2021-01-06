@@ -60,7 +60,7 @@ def get_stats_last_7_days_new(page1, page2):
         if record['countriesAndTerritories'] == 'Poland':
             date_time = datetime.strptime(record['dateRep'], '%d/%m/%Y')
             if today >= date_time >= (today - timedelta(days=14)):
-                rate = record['notification_rate_per_100000_population_14-days']
+                rate = float(record['notification_rate_per_100000_population_14-days'])
 
     response = get(page2, headers={"content-type": "application/json"})
     data = response.json()
