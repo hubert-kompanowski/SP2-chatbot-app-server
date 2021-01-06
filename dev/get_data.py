@@ -96,13 +96,31 @@ def get_stats_last_7_days_new(page1, page2):
 
     today = datetime.today()
 
-    stats = {"0": {"date": str(today), "cases": cases_today, "deaths": deaths_today, "population": 37972812, "cumulative_nr": rate},
-              "1": {"date": str(today - timedelta(days=1)), "cases": cases_1, "deaths": deaths_1, "population": 37972812, "cumulative_nr": rate},
-              "2": {"date": str(today - timedelta(days=2)), "cases": cases_2, "deaths": deaths_2, "population": 37972812, "cumulative_nr": rate},
-              "3": {"date": str(today - timedelta(days=3)), "cases": cases_3, "deaths": deaths_3, "population": 37972812, "cumulative_nr": rate},
-              "4": {"date": str(today - timedelta(days=4)), "cases": cases_4, "deaths": deaths_4, "population": 37972812, "cumulative_nr": rate},
-              "5": {"date": str(today - timedelta(days=5)), "cases": cases_5, "deaths": deaths_5, "population": 37972812, "cumulative_nr": rate},
-              "6": {"date": str(today - timedelta(days=6)), "cases": cases_6, "deaths": deaths_6, "population": 37972812, "cumulative_nr": rate},}
+    stats = {"stats": [{"date": str(today), "cases": cases_today, "deaths": deaths_today,
+                          "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=1)),
+                          "cases": cases_1,
+                          "deaths": deaths_1, "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=2)),
+                          "cases": cases_2,
+                          "deaths": deaths_2, "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=3)), "cases": cases_3,
+                          "deaths": deaths_3, "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=4)), "cases": cases_4,
+                          "deaths": deaths_4, "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=5)),
+                          "cases": cases_5,
+                          "deaths": deaths_5, "population": 37972812,
+                          "cumulative_nr": rate},
+                         {"date": str(today - timedelta(days=6)),
+                          "cases": cases_6,
+                          "deaths": deaths_6, "population": 37972812,
+                          "cumulative_nr": rate}], }
 
     return stats
 
