@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 today = datetime.today()
 
 source_page = 'https://opendata.ecdc.europa.eu/covid19/casedistribution/json/'
+source = 'https://api.apify.com/v2/datasets/L3VCmhMeX0KUQeJto/items?format=json&clean=1'
 
 json_stats = {"0": {"date": str(today), "cases": 10567, "deaths": 452, "population": 37972812, "cumulative_nr": 743.88749508},
               "1": {"date": str(today - timedelta(days=1)), "cases": 10567, "deaths": 452, "population": 37972812, "cumulative_nr": 743.88749508},

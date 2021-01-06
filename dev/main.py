@@ -1,7 +1,7 @@
 from flask import Flask
 
-from config import source_page
-from dev.get_data import get_poland_stats_time, get_stats_last_7_days
+from config import source_page, source
+from dev.get_data import get_poland_stats_time, get_stats_last_7_days_new
 
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ def today_stats():
 
 @app.route('/stats', methods=['GET'])
 def stats():
-    return get_stats_last_7_days(source_page)
+    return get_stats_last_7_days_new(source_page, source)
 
 
 if __name__ == '__main__':
